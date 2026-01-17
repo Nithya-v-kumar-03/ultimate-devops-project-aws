@@ -2,7 +2,7 @@
 
 ##  Setup OIDC Connector
 
-#### commands to configure IAM OIDC provider 
+#### commands to configure IAM OIDC provider (it will create oidc provider for cluster)
 
 ```
 export cluster_name=demo-cluster
@@ -16,7 +16,7 @@ oidc_id=$(aws eks describe-cluster --name $cluster_name --query "cluster.identit
 
 - aws iam list-open-id-connect-providers | grep $oidc_id | cut -d "/" -f4\n 
 
-If not, run the below command
+If not, run the below command(adding the created oidc IAM provider to cluster)
 
 ```
 eksctl utils associate-iam-oidc-provider --cluster $cluster_name --approve
@@ -112,3 +112,4 @@ aws iam create-policy-version \
     --policy-document file://policy.json \
     --set-as-default
 ```
+
